@@ -1,0 +1,14 @@
+empty
+
+a = valueDoubler(4);
+fprintf("%0.2f\n", a)
+
+function [] = empty()
+
+end
+
+function [doubleTheValue] = valueDoubler(value)
+
+    doubleTheValue = value*2;
+
+end
