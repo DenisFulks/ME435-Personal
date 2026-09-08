@@ -5,15 +5,25 @@ void setup() {
   Serial.begin(19200);
   // reserve 200 bytes for the inputString:
   inputString.reserve(200);
+
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
   // print the string when a newline arrives:
   if (isStringComplete) {
-    Serial.println(inputString); // TODO: Remove this echo
+    inputString.toUpperCase();
 
-    // TODO: Do the command!
-    
+    if (inputString.equals("LED ON")) {
+      digitalWrite(LED_BUILTIN, HIGH);
+      Serial.println("The LED is now on");
+    } else if (inputString.equals("LED OFF")) {
+      digitalWrite(LED_BUILTIN, LOW);
+      Serial.println("The LED is now off");
+    } else {
+      Serial.print("Unrecognized Command --> ");
+      Serial.println(inputString);
+    }
 
 
     // clear the string:
