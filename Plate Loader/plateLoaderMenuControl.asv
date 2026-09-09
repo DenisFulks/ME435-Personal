@@ -1,0 +1,61 @@
+function plateLoaderMenuControl(s)
+while(1)
+    switch(menu('Choose command','Reset','X-Axis',...
+            'Z-Axis','Gripper','Move','Status','Special Moves','Exit'))
+        case 1
+            writeline(s, "RESET")
+        case 2
+            writeline(s,['X-AXIS ',num2str(menu('Choose location to move to','1','2','3','4','5'))]);
+        case 3
+            switch(menu('Z-AXIS:','EXTEND','RETRACT'))
+                case 1
+                    writeline(s,'Z-AXIS EXTEND');
+                case 2
+                    writeline(s,'Z-AXIS RETRACT');
+            end
+        case 4
+            switch(menu('GRIPPER:', 'OPEN', 'CLOSE'))
+                case 1
+                    writeline(s, 'GRIPPER OPEN')
+                case 2
+                    writeline(s, 'GRIPPER CLOSE')
+            end
+        case 5
+            a = menu('Choose location to grab to','1','2','3','4','5');
+            b = menu('Choose location to drop to','1','2','3','4','5');
+            writeline(s,['MOVE ', num2str(a), ' ', num2str(b)]);
+        case 6
+            writeline(s, "LOADER_STATUS")
+        case 7
+            switch(menu('Specal Moves:', 'HOP', 'Something'))
+                case 1
+                    uiwait(helpdlg('Please place a plate at location 1'))
+
+                    writeline(s, 'RESET')
+                    writeline(s, 'X-Axis 1')
+                    writeline(s, 'GRIPPER OPEN')
+                    writeline(s, 'Z-AXIS EXTEND')
+                    writeline(s, 'GRIPPER CLOSE')
+                    writeline(s, 'GRIPPER OPEN')
+                    writeline(s, 'GRIPPER CLOSE')
+                    writeline(s, 'Z-AXIS RETRACT')
+                    writeline(s, 'X-AXIS 5')
+                    writeline(x, 'X')
+                    writeline(s, 'GRIPPER OPEN')
+                    writeline(s, 'Z-AXIS EXTEND')
+                    writeline(s, 'GRIPPER CLOSE')
+                    writeline(s, 'GRIPPER OPEN')
+                    writeline(s, 'GRIPPER CLOSE')
+                    writeline(s, 'Z-AXIS RETRACT')
+                    writeline(s, 'X-AXIS 3')
+                    writeline(s, 'GRIPPER OPEN')
+                case 2
+                    writeline(s, 'RESET')
+            end
+        case 8
+            fprintf("Goodbye!\n");
+            break
+    end
+    
+    readline(s)
+end

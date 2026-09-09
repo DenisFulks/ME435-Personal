@@ -10,11 +10,15 @@ void setup() {
 void loop() {
   // print the string when a newline arrives:
   if (isStringComplete) {
-    Serial.println(inputString); // TODO: Remove this echo
-
-    // TODO: Do the command!
-    
-
+    if (inputString.equals("RESET")) {
+      Serial.println("READY, SAGIAN PE LOADER, ROM VER. 1.1.6, 12APR2001");
+    } else if (inputString.equals("X_AXIS")) {
+      digitalWrite(LED_BUILTIN, LOW);
+      Serial.println("The LED is now off");
+    } else {
+      Serial.print("Unrecognized Command --> ");
+      Serial.println(inputString);
+    }
 
     // clear the string:
     inputString = "";
