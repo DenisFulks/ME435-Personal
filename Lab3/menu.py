@@ -1,6 +1,3 @@
-import serial
-import time
-
 import PlateLoader
 
 def main():
