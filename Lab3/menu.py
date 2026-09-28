@@ -1,7 +1,7 @@
-import PlateLoader
+import plateloader
 
 def main():
-    plateLoader = PlateLoader.PlateLoader("/dev/ttyACM0")
+    plateLoader = plateloader.PlateLoader("/dev/ttyACM0")
     plateLoader.connect()
 
     while True:
