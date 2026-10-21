@@ -53,6 +53,9 @@ try:
                 (json.dumps(packet) + "\n").encode("utf-8")
             )
             time.sleep(0.02)
+            
+            # print(axes)
+            # print(buttons)
 
 except (BrokenPipeError, ConnectionResetError):
     print("MATLAB disconnected.")
