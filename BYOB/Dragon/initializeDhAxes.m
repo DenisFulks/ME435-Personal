@@ -30,25 +30,17 @@ function initializeDhAxes
     app.link2Vertices = get(app.link2Patch, 'Vertices')';
     app.link2Vertices(4,:) = ones(1, size(app.link2Vertices,2));
 
-    app.link3Patch = makeStlLink("LowL3.stl", app.axes_arm, [181/255 24/255 35/255]);
+    app.link3Patch = makeStlLink("LowL5.stl", app.axes_arm, [181/255 24/255 35/255]);
     app.link3Vertices = get(app.link3Patch, 'Vertices')';
     app.link3Vertices(4,:) = ones(1, size(app.link3Vertices,2));
 
-    app.link4Patch = makeStlLink("LowL4.stl", app.axes_arm, [212/255 115/255 90/255]);
+    app.link4Patch = makeStlLink("LowL6.stl", app.axes_arm, [212/255 115/255 90/255]);
     app.link4Vertices = get(app.link4Patch, 'Vertices')';
     app.link4Vertices(4,:) = ones(1, size(app.link4Vertices,2));
 
-    app.link5Patch = makeStlLink("LowL5.stl", app.axes_arm, [100/255 200/255 12/255]);
+    app.link5Patch = makeStlLink("LowL7.stl", app.axes_arm, [100/255 200/255 12/255]);
     app.link5Vertices = get(app.link5Patch, 'Vertices')';
     app.link5Vertices(4,:) = ones(1, size(app.link5Vertices,2));
-
-    app.link6Patch = makeStlLink("LowL6.stl", app.axes_arm, [200/255 50/255 120/255]);
-    app.link6Vertices = get(app.link6Patch, 'Vertices')';
-    app.link6Vertices(4,:) = ones(1, size(app.link6Vertices,2));
-
-    app.link7Patch = makeStlLink("LowL7.stl", app.axes_arm, [200/255 50/255 120/255]);
-    app.link7Vertices = get(app.link7Patch, 'Vertices')';
-    app.link7Vertices(4,:) = ones(1, size(app.link7Vertices,2));
     % End: Code that can go into your GUI's opening function.
     
     updateArm(app);
@@ -60,11 +52,9 @@ function updateArm(app)
     % Create the A homogeneous transformation matrices for the given jointAngles.
     A1 = create_A_matrix(50, 60, -90, app.jointAngles(1));
     A2 = create_A_matrix(100, 0, 0, app.jointAngles(2));
-    A3 = create_A_matrix(100, 0, 0, app.jointAngles(3));
-    A4 = create_A_matrix(100, 0, 0, app.jointAngles(4));
+    A3 = create_A_matrix(0, 0, -90, app.jointAngles(3));
+    A4 = create_A_matrix(0, 40, 90, app.jointAngles(4));
     A5 = create_A_matrix(0, 0, -90, app.jointAngles(5));
-    A6 = create_A_matrix(0, 40, 90, app.jointAngles(6));
-    A7 = create_A_matrix(0, 0, -90, app.jointAngles(7));
 
     % Use the current A matricies to form the T0_n matricies.
     T0_1 = A1;
@@ -72,8 +62,6 @@ function updateArm(app)
     T0_3 = A1 * A2 * A3;
     T0_4 = A1 * A2 * A3 * A4;
     T0_5 = A1 * A2 * A3 * A4 * A5;
-    T0_6 = A1 * A2 * A3 * A4 * A5 * A6;
-    T0_7 = A1 * A2 * A3 * A4 * A5 * A6 * A7;
     
     % Use the current T matricies to transform the original patch vertices
     link1VerticesWRTground = T0_1 * app.link1Vertices;
@@ -81,8 +69,6 @@ function updateArm(app)
     link3VerticesWRTground = T0_3 * app.link3Vertices;
     link4VerticesWRTground = T0_4 * app.link4Vertices;
     link5VerticesWRTground = T0_5 * app.link5Vertices;
-    link6VerticesWRTground = T0_6 * app.link6Vertices;
-    link7VerticesWRTground = T0_7 * app.link7Vertices;
     
     % Update the patches with the newly transformed vertices
     set(app.link1Patch,'Vertices', link1VerticesWRTground(1:3,:)');
@@ -90,7 +76,5 @@ function updateArm(app)
     set(app.link3Patch,'Vertices', link3VerticesWRTground(1:3,:)');
     set(app.link4Patch,'Vertices', link4VerticesWRTground(1:3,:)');
     set(app.link5Patch,'Vertices', link5VerticesWRTground(1:3,:)');
-    set(app.link6Patch,'Vertices', link6VerticesWRTground(1:3,:)');
-    set(app.link7Patch,'Vertices', link7VerticesWRTground(1:3,:)');
 
 end
