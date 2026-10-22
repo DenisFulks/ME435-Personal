@@ -4,7 +4,7 @@ Authors:  Dave Fisher and Denis Fulks.
 # DONE: 1.  Put your name in the above.
 
 import time
-import rosebot
+from rosebot import Rosebot
 
 def main():
     """ Calls the desired TEST functions. """
@@ -21,7 +21,7 @@ def run_test_drive_system():
     # -------------------------------------------------------------------------
     # DONE: 2. Construct a robot, that is, a rosebot.RoseBot() object.
     # -------------------------------------------------------------------------
-    robot = rosebot()
+    robot = Rosebot()
 
     # -------------------------------------------------------------------------
     # STUDENTS: Do the work in this module as follows.
@@ -65,15 +65,15 @@ def run_test_go_stop(robot: Rosebot):
         input("Press the ENTER key when ready for the robot to start moving.")
 
         # -------------------------------------------------------------------------
-        # TODO: 3. Call the  go  method of the   drive_system   of the robot,
+        # DONE: 3. Call the  go  method of the   drive_system   of the robot,
         #   sending it the two wheel speeds.  Keep going (time.sleep) for 2 seconds.
         #   Then call the  stop  method of the   drive_system   of the robot.
         # -------------------------------------------------------------------------
         robot.drive_system.go(left_wheel_speed, right_wheel_speed)
-        time.sleep(2)
+        time.sleep(1)
         robot.drive_system.stop()
 
-def run_test_go_straight_for_seconds(robot: rosebot):
+def run_test_go_straight_for_seconds(robot: Rosebot):
     """
     Tests the   go_straight_for_seconds   method of the DriveSystem class.
     """
@@ -94,7 +94,6 @@ def run_test_go_straight_for_seconds(robot: rosebot):
         # TODO: 4. Call the  go_straight_for_seconds  method of the   drive_system
         #  of the robot, sending it the input  seconds  and  speed.
         # -------------------------------------------------------------------------
-
 
 def run_test_go_straight_for_inches(robot: Rosebot):
     """
@@ -119,7 +118,6 @@ def run_test_go_straight_for_inches(robot: Rosebot):
         #  (The go_straight_for_inches method uses the same speed for both wheels.)
         # -------------------------------------------------------------------------
 
-
 def run_test_spin_in_place_for_seconds(robot: Rosebot):
     """
     Tests the   spin_in_place_for_seconds   method of the DriveSystem class.
@@ -142,7 +140,6 @@ def run_test_spin_in_place_for_seconds(robot: Rosebot):
         #  of the robot, sending it the input  seconds  and  speed.
         # -------------------------------------------------------------------------
 
-
 def run_test_spin_in_place_for_degrees(robot: Rosebot):
     """
     Tests the   spin_in_place_for_degrees   method of the DriveSystem class.
@@ -162,7 +159,6 @@ def run_test_spin_in_place_for_degrees(robot: Rosebot):
         # TODO: 7. Call the  spin_in_place_for_degrees  method of the   drive_system
         #  of the robot, sending it the input  degrees  and  speed.
         # -------------------------------------------------------------------------
-
 
 def run_test_draw_polygon(robot: Rosebot):
     """
@@ -194,7 +190,5 @@ def run_test_draw_polygon(robot: Rosebot):
         #  methods of the   drive_system as needed to draw the polygon,
         #  sending the inputs degrees and speed or inches and speed as appropriate.
         # -------------------------------------------------------------------------
-
-
 
 main()

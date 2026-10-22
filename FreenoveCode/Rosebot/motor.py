@@ -82,7 +82,7 @@ class OrdinaryCar:
         self.pwm.close()
 
 if __name__=='__main__':
-    PWM = Ordinary_Car()          
+    PWM = OrdinaryCar()          
     try:
         PWM.set_motor_model(2000,2000,2000,2000)       #Forward
         time.sleep(1)
