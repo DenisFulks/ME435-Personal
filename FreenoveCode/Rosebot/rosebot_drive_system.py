@@ -4,6 +4,7 @@ class DriveSystem:
     
     def __init__(self):
         self.car = OrdinaryCar()
+        
 
     def scale_speed(self, speed):
         """ Returns an int dutu of 0 to 4095 (or 0 to -4095) based on the given speed. """
