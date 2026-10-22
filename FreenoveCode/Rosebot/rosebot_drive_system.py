@@ -1,10 +1,10 @@
-from motor import OrdinaryCar
+import motor
+import time
 
 class DriveSystem:
     
     def __init__(self):
-        self.car = OrdinaryCar()
-        
+        self.car = motor.OrdinaryCar()
 
     def scale_speed(self, speed):
         """ Returns an int dutu of 0 to 4095 (or 0 to -4095) based on the given speed. """
@@ -23,3 +23,15 @@ class DriveSystem:
 
     def stop(self):
         self.set_speeds(0, 0, 0, 0)
+
+    def go_straight_for_seconds(self, speed, seconds):
+        self.go(speed, speed)
+        time.sleep(seconds)
+        self.stop()
+
+    def go_straight_for_inches(self, speed, inches):
+        m = 0.2
+        B = 0
+        inches_per_second = m * speed + B
+        seconds = inches / inches_per_second
+        self.go_straight_for_seconds(speed, seconds)
