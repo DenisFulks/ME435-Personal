@@ -30,8 +30,8 @@ class DriveSystem:
         self.stop()
 
     def go_straight_for_inches(self, speed, inches):
-        m = 0.2
-        B = 0
+        m = 0.1
+        B = 32
         inches_per_second = m * speed + B
         seconds = inches / inches_per_second
         self.go_straight_for_seconds(speed, seconds)
@@ -42,8 +42,8 @@ class DriveSystem:
         self.stop()
 
     def spin_in_place_for_degrees(self, speed, degrees):
-        m = 0.2
-        B = 0
+        m = 1.4
+        B = 300
         degrees_per_second = m * speed + B
         seconds = degrees / degrees_per_second
         self.spin_in_place_for_seconds(speed, seconds)

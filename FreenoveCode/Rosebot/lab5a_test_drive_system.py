@@ -22,6 +22,10 @@ def run_test_drive_system():
     # DONE: 2. Construct a robot, that is, a rosebot.RoseBot() object.
     # -------------------------------------------------------------------------
     robot = Rosebot()
+    robot.drive_system.stop()
+    # robot.drive_system.set_speeds(50, -50, -50, 50)
+    # time.sleep(0.5)
+    # robot.drive_system.stop()
 
     # -------------------------------------------------------------------------
     # STUDENTS: Do the work in this module as follows.
@@ -38,7 +42,7 @@ def run_test_drive_system():
 
     # run_test_go_stop(robot)
     # run_test_go_straight_for_seconds(robot)
-    run_test_go_straight_for_inches(robot)
+    # run_test_go_straight_for_inches(robot)
     # run_test_spin_in_place_for_seconds(robot)
     # run_test_spin_in_place_for_degrees(robot)
     # run_test_draw_polygon(robot)
@@ -162,7 +166,7 @@ def run_test_spin_in_place_for_degrees(robot: Rosebot):
         # DONE: 7. Call the  spin_in_place_for_degrees  method of the   drive_system
         #  of the robot, sending it the input  degrees  and  speed.
         # -------------------------------------------------------------------------
-        robot.drive_system.spin_in_place_for_seconds(speed, degrees)
+        robot.drive_system.spin_in_place_for_degrees(speed, degrees)
 
 def run_test_draw_polygon(robot: Rosebot):
     """
@@ -194,5 +198,11 @@ def run_test_draw_polygon(robot: Rosebot):
         #  methods of the   drive_system as needed to draw the polygon,
         #  sending the inputs degrees and speed or inches and speed as appropriate.
         # -------------------------------------------------------------------------
+
+        for i in range(sides):
+            robot.drive_system.go_straight_for_inches(speed, inches)
+            time.sleep(0.5)
+            robot.drive_system.spin_in_place_for_degrees(speed, degrees)
+            time.sleep(0.5)
 
 main()
