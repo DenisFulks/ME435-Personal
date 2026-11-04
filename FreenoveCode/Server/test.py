@@ -1,6 +1,9 @@
+import gpiozero as gz
+
 def test_Led():
     import time
     from led import Led
+
     led=Led()
     try:
         led.ledIndex(0x01, 255,   0,   0)      #Red
@@ -151,6 +154,7 @@ if __name__ == '__main__':
         print ("Parameter error: Please assign the device")
         exit() 
     if sys.argv[1] == 'Led':
+        button = gz.Button(18)
         test_Led()
     elif sys.argv[1] == 'Motor':
         test_Motor()
