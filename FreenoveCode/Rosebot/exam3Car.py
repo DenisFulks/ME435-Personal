@@ -24,24 +24,24 @@ class App:
                 self.robot.drive_system.set_speeds(message_payload[2], message_payload[2], 0, 0)
             else:
                 self.robot.drive_system.set_speeds(-message_payload[2], -message_payload[2], 0, 0)
-            time.sleep(message_payload(1))
-            self.robot.drive_system.set_speeds(0, 0, 0, 0)
+            time.sleep(message_payload[1])
+            self.robot.drive_system.stop()
 
         if message_type == "right":
             if message_payload[0] == 1:
                 self.robot.drive_system.set_speeds(0, 0, message_payload[2], message_payload[2])
             else:
                 self.robot.drive_system.set_speeds(0, 0, -message_payload[2], -message_payload[2])
-            time.sleep(message_payload(1))
-            self.robot.drive_system.set_speeds(0, 0, 0, 0)
+            time.sleep(message_payload[1])
+            self.robot.drive_system.stop()
 
-        if message_type == "left":
+        if message_type == "both":
             if message_payload[0] == 1:
                 self.robot.drive_system.set_speeds(message_payload[2], message_payload[2], message_payload[3], message_payload[3])
             else:
                 self.robot.drive_system.set_speeds(-message_payload[2], -message_payload[2], -message_payload[3], -message_payload[3])
-            time.sleep(message_payload(1))
-            self.robot.drive_system.set_speeds(0, 0, 0, 0)
+            time.sleep(message_payload[1])
+            self.robot.drive_system.stop()
   
 
 def main():
@@ -50,13 +50,11 @@ def main():
 
     try:
         while True:
-            app.mqtt_client.send_message("ultra", app.robot.ultrasonic.get_cm())
+            app.mqtt_client.send_message("ultra", round(app.robot.ultrasonic.get_cm()))
             time.sleep(2)
     except KeyboardInterrupt:
         print("Goodbye")
         app.robot.drive_system.stop()
         app.mqtt_client.close()
-
-    signal.pause()
 
 main()
