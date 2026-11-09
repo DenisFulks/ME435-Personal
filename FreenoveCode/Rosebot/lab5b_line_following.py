@@ -6,7 +6,7 @@ def main():
     robot = Rosebot()
 
     fastSpeed = 12
-    slowSpeed = 5
+    slowSpeed = 0
 
     try:
         while robot.ultrasonic.get_cm() > 20:
