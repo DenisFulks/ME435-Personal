@@ -73,6 +73,11 @@ def main():
                 app.robot.buzzer.beep(on_time=0.1, off_time=0.1, n=3)
                 app.mode = "none"
 
+            if app.mode == "drive_until_line" and app.robot.line_sensors.get_line_word() == "BBB":
+                app.robot.drive_system.stop()
+                app.robot.buzzer.beep(on_time=0.1, off_time=0.1, n=3)
+                app.mode = "none"
+
             if app.mode == "line_following":
                 if (app.robot.line_sensors.get_left() == "B"):
                     app.robot.drive_system.set_speeds(slowSpeed, slowSpeed, fastSpeed, fastSpeed)
